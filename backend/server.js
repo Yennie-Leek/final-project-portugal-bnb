@@ -15,6 +15,10 @@ mongoose.connect(mongoUrl, {
 mongoose.Promise = Promise
 
 const GuestAccomodation = mongoose.model("GuestAccomodation", {
+  bookingid: {
+    type: String, 
+    required: true,
+  },
   startdate: {
     type: String, 
     required: true,
@@ -34,7 +38,6 @@ const GuestAccomodation = mongoose.model("GuestAccomodation", {
 })
 
 const GuestDetails = mongoose.model("GuestDetails", {
-  
   firstname: {
     type: String, 
     required: [true,"Name is required"],
@@ -59,7 +62,6 @@ const GuestDetails = mongoose.model("GuestDetails", {
     required: [true, "Phone number required"]
     }
   }
-  
 )
 
 const GuestReservation = mongoose.model("GuestReservation", {
@@ -86,8 +88,11 @@ app.get('/', (req, res) => {
 app.post("/reservation", async (req, res) => {
   const { startdate, enddate, roomtype, pax, firstname, lastname, email, phonenumber } = req.body
 
+  var bookingid = Date.now() + Math.floor(Math.random() * 100)
+
   try {
     const newAccomodation = await new GuestAccomodation ({
+      bookingid,
       startdate,
       enddate,
       roomtype,
@@ -108,6 +113,16 @@ app.post("/reservation", async (req, res) => {
   } catch (error) {
     res.status(400).json({ success: false, message: 'Page not found', error })
   }
+})
+
+app.get("/mybooking", async (req,res) => {
+  res.send("No booking ID has been provided.")
+})
+
+app.get("/mybooking/:bookingid", async (req,res) => {
+  GuestAccomodation.findOne({bookingid: req.params.bookingid}, function(err, accomdation) {
+    res.send(accomdation);
+  })
 })
 
 app.listen(port, () => {

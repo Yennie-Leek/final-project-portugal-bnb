@@ -1,0 +1,45 @@
+.conf-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.conf-heading {
+  color: #452e21;
+  width: 70%;
+  height: 100px;
+  text-align: center;
+  font-family: Graduate;
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.conf-details {
+  display: flex;
+  flex-direction: column;
+  font-family: Roboto Mono;
+  border: solid #452e21 1px;
+  padding: 20px;
+  margin-bottom: 35px;
+}
+
+@media (min-width: 768px) {
+  .conf-heading {
+    font-size: 24px;
+  }
+
+  .conf-details {
+    width: 50%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .conf-heading {
+    font-size: 35px;
+  }
+
+  .conf-details {
+    font-size: 25px;
+  }
+}

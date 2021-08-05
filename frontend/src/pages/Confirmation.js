@@ -11,12 +11,12 @@ import './Confirmation.css'
 const Confirmation = () => {
   const confirmation = useSelector(store => store.guestreservation.confirmation)
   const history = useHistory()
-
+  
   useEffect(() => {
     if (!confirmation) {
       history.push('/accomodation')
     }
-  },[confirmation, history]) 
+  },[confirmation, history])
 
 if (confirmation) {
   return (
@@ -35,6 +35,7 @@ if (confirmation) {
         <div className="conf-wrapper">
           <h3 className="conf-heading">Pack your bags and hit the road, we are waiting for you!</h3>
           <div className="conf-details">
+            <p>Booking ID: {confirmation.accomodation.bookingid} <a href={'https://../confirmation/' + confirmation.accomodation.bookingid}>(link to booking confirmation)</a></p>
             <p>Check In: {new Date (confirmation.accomodation.startdate).toDateString()}</p>
             <p>Check Out: {new Date (confirmation.accomodation.enddate).toDateString()}</p>
             <p>Room: {confirmation.accomodation.roomtype}</p>

@@ -10,6 +10,7 @@ import Accomodation from './pages/Accomodation'
 import Activities from './pages/Activities'
 import Book from './pages/Book'
 import Confirmation from './pages/Confirmation'
+import Booking from './pages/Booking'
 import Home from './pages/Home'
 import Summary from './pages/Summary'
 
@@ -29,6 +30,7 @@ export const App = () => {
           <Route exact path="/book" component={Book} />
           <Route exact path="/summary" component={Summary} />
           <Route exact path="/confirmation" component={Confirmation} />
+          <Route exact path="/confirmation/:id" component={Booking} />
           <Route exact path="/activities" component={Activities} />
           <Route exact path="/about" component={About} />
         </Switch>

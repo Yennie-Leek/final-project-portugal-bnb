@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
   const initialState = localStorage.getItem('guestreservation') 
   ? {
       accomodation: {
+        bookingid: JSON.parse(localStorage.getItem('guestreservation')).bookingid,
         startdate: JSON.parse(localStorage.getItem('guestreservation')).startdate,
         enddate: JSON.parse(localStorage.getItem('guestreservation')).enddate,
         roomtype: JSON.parse(localStorage.getItem('guestreservation')).roomtype,
@@ -17,6 +18,7 @@ import { createSlice } from '@reduxjs/toolkit'
   }
   : {
       accomodation: {
+        bookingid: null,
         startdate: null,
         enddate: null,
         roomtype: null,
@@ -36,6 +38,9 @@ const guestreservation = createSlice({
   name: 'guestreservation',
   initialState: initialState,
   reducers: {
+    setBookingid: (store, action) => {
+      store.accomodation.bookingid = action.payload
+    },
     setStartdate: (store, action) => {
       store.accomodation.startdate = action.payload
     },
